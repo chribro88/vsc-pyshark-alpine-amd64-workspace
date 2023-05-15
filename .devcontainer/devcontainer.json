@@ -3,7 +3,7 @@
     "context": "..",
     "dockerFile": "Dockerfile",
     "workspaceFolder": "/workspace",
-    "workspaceMount": "source=/home/cb/wrx80-workspace/vsc-pyshark-alpine-amd64-workspace,target=/workspace,type=bind,consistency=cached",
+    "workspaceMount": "source=/home/<LOCAL_USER>/<PATH>/vsc-pyshark-alpine-amd64-workspace,target=/workspace,type=bind,consistency=cached",
     // Implementing DIND (Docker in Docker)
     "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
     //"appPort": [5000], // only exposed locally on the machine with 127.0.0.1
@@ -13,11 +13,11 @@
 	  "docker",
 	  "build",
 	  "--build-arg",
-	  "REGISTRY_HOST=192.168.1.95:5050/",
+	  "REGISTRY_HOST=<REGISTRY_HOST>/",
 	  "--build-arg",
-	  "REGISTRY_USERNAME=cb/",
+	  "REGISTRY_USERNAME=<REGISTRY_USERNAME>/",
 	  "--build-arg",
-	  "BASE_VERSION=3.18",
+	  "BASE_VERSION=<BASE_VERSION>",
 	  "-f",
 	  ".devcontainer/Dockerfile",
 	  "."
