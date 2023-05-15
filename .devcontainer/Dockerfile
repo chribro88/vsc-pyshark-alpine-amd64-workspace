@@ -14,7 +14,7 @@ RUN apk --update --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/ed
     # tshark & setcap
     tshark libcap
 
-# set the permissions
+# set the permissions, non-root user
 # https://wiki.wireshark.org/CaptureSetup/CapturePrivileges
 RUN chown root:wireshark /usr/bin/dumpcap \
     && chmod o-rx /usr/bin/dumpcap \
