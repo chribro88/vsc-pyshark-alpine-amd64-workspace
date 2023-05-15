@@ -8,7 +8,7 @@
     "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
     //"appPort": [5000], // only exposed locally on the machine with 127.0.0.1
     "build": {"context": "."},
-    // pre build image to leverage --cache-from
+    // need to pass arguments to the docker file so we can use from our local repo
 	"initializeCommand": [
 	  "docker",
 	  "build",
