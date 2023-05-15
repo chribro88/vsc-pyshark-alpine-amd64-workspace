@@ -1,0 +1,50 @@
+{
+    "name": "Remote PyShark & Alpine AMD64 Workspace v1",
+    "context": "..",
+    "dockerFile": "Dockerfile",
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=/home/cb/wrx80-workspace/vsc-pyshark-alpine-amd64-workspace,target=/workspace,type=bind,consistency=cached",
+    // Implementing DIND (Docker in Docker)
+    "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
+    //"appPort": [5000], // only exposed locally on the machine with 127.0.0.1
+    "build": {"context": "."},
+    // pre build image to leverage --cache-from
+	"initializeCommand": [
+	  "docker",
+	  "build",
+	  "--build-arg",
+	  "REGISTRY_HOST=192.168.1.95:5050/",
+	  "--build-arg",
+	  "REGISTRY_USERNAME=cb/",
+	  "--build-arg",
+	  "BASE_VERSION=3.18",
+	  "-f",
+	  ".devcontainer/Dockerfile",
+	  "."
+	],
+	"runArgs": [
+	//   "--gpus", 
+	//   "all",
+	  "-P",
+	  "--shm-size",
+	  "10000m",
+	  "--cap-add=NET_RAW", 
+	  "--cap-add=NET_ADMIN"	
+    ],
+    "extensions": [
+	  "ms-azuretools.vscode-docker",         // view and manage containers and image from VS Code
+	  "chrisdias.vscode-opennewinstance",    // easily reopen the workspace from the Explorer pane
+	  "ms-python.python",                    // python syntax highlighting
+	  "eamodio.gitlens",                     // good tool to manage git changes
+	  "donjayamanne.githistory"             // view graph of git commits
+    ],
+    // Set to "none" if you want to keep your containers running after VS Code shuts down.
+    // Set to "stopContainer" to close containers running after VS Code shuts down.
+    "shutdownAction": "none",
+
+    // Uncomment the next line to run commands after the container is created.
+    "postCreateCommand": "sh /tmp/conda-tmp/postCreateCommand.sh",
+
+    // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vsc"
+}
