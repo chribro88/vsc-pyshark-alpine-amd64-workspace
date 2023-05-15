@@ -1,12 +1,16 @@
-# Alpine VS Code Remote Development Container 
+# PyShark VS Code Remote Development Container 
  - with Miniconda & Docker
  - Alpine 3.18
+ - AMD64
+
+Prerequisistes:
+ - Follow steps 1-3 on https://github.com/chribro88/vsc-alpine-amd64-workspace
 
 Build:
-1. https://github.com/chribro88/docker-alpine-glibc
+1. https://github.com/chribro88/vsc-alpine-amd64-workspace
 
 ```
-docker build --build-arg BASE_VERSION=3.18 https://github.com/chribro88/docker-alpine-glibc.git -t [<REGISTRY_HOST>/][<REGISTRY_USERNAME>/]alpine-glibc[:<BASE_VERSION>]
+docker build --build-arg REGISTRY_HOST=<REGISTRY_HOST>/ --build-arg REGISTRY_USERNAME=<REGISTRY_USERNAME>/ --build-arg BASE_VERSION=3.18 -f .devcontainer/Dockerfile https://github.com/chribro88/vsc-alpine-amd64-workspace.git -t [<REGISTRY_HOST>/][<REGISTRY_USERNAME>/]vsc-alpine-amd64-workspace[:<BASE_VERSION>]
 
 # optional - tag and send to local registry
 docker tag alpine-glibc[:<BASE_VERSION>] [<REGISTRY_HOST>/][<REGISTRY_USERNAME>/]alpine-glibc[:<BASE_VERSION>]
