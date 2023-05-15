@@ -33,3 +33,11 @@ docker push  [<REGISTRY_HOST>/][<REGISTRY_USERNAME>/]vsc-alpine-amd64-workspace[
 ```
 docker pull  [<REGISTRY_HOST>/][<REGISTRY_USERNAME>/]vsc-alpine-amd64-workspace[:<BASE_VERSION>]
 ```
+
+NB:
+  - VS Code will prefix 'vsc-' to the local directory for the image name, so you may want to do: 
+```
+git clone https://github.com/chribro88/vsc-pyshark-alpine-amd64-workspace.git
+mv vsc-pyshark-alpine-amd64-workspace pyshark-alpine-amd64-workspace
+```
+  - otherwise image will be 'vsc-vsc-pyshark-alpine-amd64-workspace-<some hash>'
