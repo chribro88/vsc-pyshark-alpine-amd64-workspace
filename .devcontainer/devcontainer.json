@@ -9,7 +9,7 @@
     //"appPort": [5000], // only exposed locally on the machine with 127.0.0.1
     "build": {"context": "."},
     // need to pass arguments to the docker file so we can use from our local repo
-	"initializeCommand": [
+    "initializeCommand": [
 	  "docker",
 	  "build",
 	  "--build-arg",
@@ -28,15 +28,15 @@
 	  "-P",
 	  "--shm-size",
 	  "10000m",
-	  "--cap-add=NET_RAW", 
-	  "--cap-add=NET_ADMIN"	
+	  "--cap-add=NET_RAW",                   // tshark & non-privileged container
+	  "--cap-add=NET_ADMIN"	                 // tshark & non-privileged container
     ],
     "extensions": [
 	  "ms-azuretools.vscode-docker",         // view and manage containers and image from VS Code
 	  "chrisdias.vscode-opennewinstance",    // easily reopen the workspace from the Explorer pane
 	  "ms-python.python",                    // python syntax highlighting
 	  "eamodio.gitlens",                     // good tool to manage git changes
-	  "donjayamanne.githistory"             // view graph of git commits
+	  "donjayamanne.githistory"              // view graph of git commits
     ],
     // Set to "none" if you want to keep your containers running after VS Code shuts down.
     // Set to "stopContainer" to close containers running after VS Code shuts down.
