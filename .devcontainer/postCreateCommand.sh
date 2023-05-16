@@ -17,10 +17,10 @@ if [ -f "$FILE" ]; then
     env_name=$(cat $FILE | grep "name: " | awk -F": " '{print $2}')
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
     echo "conda activate" >> ~/.bashrc
-    echo "conda activate $env_name" >> ~/.bashrc
+    echo "conda activate $CONDA_DIR/envs/$env_name" >> ~/.bashrc
     echo "clear" >> ~/.bashrc
     # attempt fix weird terminal output by setting COLUMNS (still doesn't work)
-    conda env create --file $FILE --prefix=$CONDA_DIR/envs/$env_name --force
+    COLUMNS=55 conda env create --file $FILE --prefix=$CONDA_DIR/envs/$env_name --force
     # rm -f /tmp/conda-tmp/environment.yml
 fi
 
