@@ -9,6 +9,7 @@ ARG BASE_VERSION=3.18
 FROM ${REGISTRY_HOST}${REGISTRY_USERNAME}vsc-alpine-amd64-workspace:${BASE_VERSION}
 
 ARG USERNAME=vsc
+ARG USER_UID=1000
 
 RUN apk --update --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --repository http://dl-cdn.alpinelinux.org/alpine/edge/main add \
     # tshark & setcap
@@ -22,7 +23,7 @@ RUN chown root:wireshark /usr/bin/dumpcap \
     && usermod -a -G wireshark $USERNAME
 
 # copy over the conda environment setup script
-COPY --chown=1000 .devcontainer/postCreateCommand.sh \
+COPY --chown=$USER_UID .devcontainer/postCreateCommand.sh \
      .devcontainer/environment.yml* /tmp/conda-tmp/
 
 RUN chmod +x /tmp/conda-tmp/postCreateCommand.sh
