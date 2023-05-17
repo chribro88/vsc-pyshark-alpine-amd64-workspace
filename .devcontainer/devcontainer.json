@@ -9,7 +9,7 @@
 	// --build-arg REGISTRY_USERNAME=<REGISTRY_USERNAME> \ \\ inlcude forwardslash
 	// --build-arg BASE_VERSION=<BASE_VERSION> \
 	// -f .devcontainer/Dockerfile \
-	// . \
+	// https://github.com/chribro88/vsc-pyshark-alpine-amd64-workspace.git \
 	// -t vsc-pyshark-alpine-amd64-workspace:3.18 \
 	// --no-cache
 	"image": "<REGISTRY_HOST><REGISTRY_USERNAME>vsc-pyshark-alpine-amd64-workspace:<BASE_VERSION>",
