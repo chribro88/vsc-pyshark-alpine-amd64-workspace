@@ -41,3 +41,19 @@ git clone https://github.com/chribro88/vsc-pyshark-alpine-amd64-workspace.git
 mv vsc-pyshark-alpine-amd64-workspace pyshark-alpine-amd64-workspace
 ```
   - otherwise image will be 'vsc-vsc-pyshark-alpine-amd64-workspace-<some hash>'
+
+ # Follow up
+ Seems better to prebuild the image on the docker host, then add the image to the devcontainer.json
+ 
+ ```
+ docker build \
+	  --build-arg USERNAME=<USERNAME> \
+	  --build-arg USER_UID=<USER_UID> \
+	  --build-arg REGISTRY_HOST=<REGISTRY_HOST> \ \\ inlcude forwardslash ('/')
+	  --build-arg REGISTRY_USERNAME=<REGISTRY_USERNAME> \ \\ inlcude forwardslash ('/')
+	  --build-arg BASE_VERSION=<BASE_VERSION> \
+	  -f .devcontainer/Dockerfile \
+	  https://github.com/chribro88/vsc-pyshark-alpine-amd64-workspace.git \
+	  -t vsc-pyshark-alpine-amd64-workspace:3.18 \
+	  --no-cache
+ ```
