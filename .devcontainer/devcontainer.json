@@ -5,8 +5,8 @@
 	// docker build \
 	// --build-arg USERNAME=<USERNAME> \
 	// --build-arg USER_UID=<USER_UID> \
-	// --build-arg REGISTRY_HOST=<REGISTRY_HOST> \ 			// inlcude forwardslash ('/')
-	// --build-arg REGISTRY_USERNAME=<REGISTRY_USERNAME> \ 		// inlcude forwardslash ('/')
+	// --build-arg REGISTRY_HOST=<REGISTRY_HOST> \			// inlcude forwardslash ('/')
+	// --build-arg REGISTRY_USERNAME=<REGISTRY_USERNAME> \	// inlcude forwardslash ('/')
 	// --build-arg BASE_VERSION=<BASE_VERSION> \
 	// -f .devcontainer/Dockerfile \
 	// https://github.com/chribro88/vsc-pyshark-alpine-amd64-workspace.git \
@@ -14,10 +14,10 @@
 	// --no-cache
 	"image": "<REGISTRY_HOST><REGISTRY_USERNAME>vsc-pyshark-alpine-amd64-workspace:<BASE_VERSION>",
 	"workspaceFolder": "/workspace",
-    	"workspaceMount": "source=/home/<LOCAL_USER>/<PATH>/vsc-pyshark-alpine-amd64-workspace,target=/workspace,type=bind,consistency=cached",
-    	// Implementing DIND (Docker in Docker)
-    	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
-    	//"appPort": [5000], 						// only exposed locally on the machine with 127.0.0.1
+   	"workspaceMount": "source=/home/<LOCAL_USER>/<PATH>/vsc-pyshark-alpine-amd64-workspace,target=/workspace,type=bind,consistency=cached",
+   	// Implementing DIND (Docker in Docker)
+   	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
+   	//"appPort": [5000],									// only exposed locally on the machine with 127.0.0.1
 	// // Uncomment if not prebuilding image
 	//"dockerFile": "Dockerfile",
 	//"build": {
@@ -40,9 +40,9 @@
 		"-P",
 	  	"--shm-size",
 	  	"10000m",
-	  	"--cap-add=NET_RAW",                             	// tshark & non-privileged container
-	  	"--cap-add=NET_ADMIN"	                           	// tshark & non-privileged container
-    	],
+	  	"--cap-add=NET_RAW",								// tshark & non-privileged container
+	  	"--cap-add=NET_ADMIN"								// tshark & non-privileged container
+   	],
 	"customizations": {
 	    	// Configure properties specific to VS Code.
 		"vscode": {
@@ -56,13 +56,13 @@
 			  ]
 		}	
 	},
-    	// Set to "none" if you want to keep your containers running after VS Code shuts down.
-    	// Set to "stopContainer" to close containers running after VS Code shuts down.
-    	"shutdownAction": "none",
+	// Set to "none" if you want to keep your containers running after VS Code shuts down.
+	// Set to "stopContainer" to close containers running after VS Code shuts down.
+	"shutdownAction": "none",
 
-    	// Uncomment the next line to run commands after the container is created.
-    	"postCreateCommand": "COLUMNS=55 sh /tmp/conda-tmp/postCreateCommand.sh",
+	// Uncomment the next line to run commands after the container is created.
+	"postCreateCommand": "COLUMNS=55 sh /tmp/conda-tmp/postCreateCommand.sh",
 
-    	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vsc"
 }
