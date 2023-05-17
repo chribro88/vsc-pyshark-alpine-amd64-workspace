@@ -57,3 +57,5 @@ mv vsc-pyshark-alpine-amd64-workspace pyshark-alpine-amd64-workspace
 	  -t vsc-pyshark-alpine-amd64-workspace:3.18 \
 	  --no-cache
  ```
+# Conda Environment
+The postCreateCommand.sh will run when the dev container is created. This will move the environment.yml from /tmp/conda-tmp/ to the /workspace/.conda/ (if it doesn't exist) which will persist on the docker host. You can update the ennvironment.yml and rebuild with the new modules.
